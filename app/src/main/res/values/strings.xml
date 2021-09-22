@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">EcommerceApp</string>
+    <string name="join_now">Join Now</string>
+    <string name="have_an_account">Already have an account</string>
+    <string name="username_txt">Username</string>
+    <string name="email_txt">E-mail</string>
+    <string name="password_txt">Password</string>
+    <string name="remember_me_txt">Remember me</string>
+    <string name="login_txt">Login</string>
+    <string name="sign_up_txt">Sign up</string>
+    <string name="forgot_pass_txt">Forgot my password</string>
+    <string name="im_admin_txt">Im an admin?</string>
 </resources>

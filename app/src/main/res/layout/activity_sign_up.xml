@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/welcome"
+    tools:context=".ui.signup.SignUpActivity">
+
+    <ImageView
+        android:id="@+id/logo_iv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/applogo"
+        app:layout_constraintWidth_percent=".8"
+        android:layout_marginTop="64dp"/>
+
+    <!--editText Layout-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_iv"
+        app:layout_constraintWidth_percent=".8"
+        android:layout_marginTop="32dp">
+
+
+        <EditText
+            android:id="@+id/name_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/design_input"
+            android:padding="12dp"
+            android:textColor="@color/white"
+            android:hint="@string/username_txt"
+            android:textAllCaps="false"
+            android:textColorHint="@color/white"/>
+        <EditText
+            android:id="@+id/email_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/design_input"
+            android:padding="12dp"
+            android:textColor="@color/white"
+            android:hint="@string/email_txt"
+            android:textAllCaps="false"
+            android:textColorHint="@color/white"
+            android:layout_marginTop="24dp"/>
+        <EditText
+            android:id="@+id/password_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/design_input"
+            android:padding="12dp"
+            android:textColor="@color/white"
+            android:hint="@string/password_txt"
+            android:textAllCaps="false"
+            android:textColorHint="@color/white"
+            android:layout_marginTop="24dp"/>
+
+        <com.rey.material.widget.CheckBox
+            android:id="@+id/sign_up_remember_me_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Material.Drawable.CheckBox"
+            app:cbd_strokeColor="@color/colorPrimaryDark"
+            android:text="@string/remember_me_txt"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            android:layout_marginTop="12dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sign_up_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/design_btn_bg"
+            android:text="@string/sign_up_txt"
+            android:textAllCaps="false"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
