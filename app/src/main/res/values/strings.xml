@@ -10,4 +10,12 @@
     <string name="sign_up_txt">Sign up</string>
     <string name="forgot_pass_txt">Forgot my password</string>
     <string name="im_admin_txt">Im an admin?</string>
+    <string name="fill_all_feilds">please fill all</string>
+    <string name="creating_your_acc">Creating account</string>
+    <string name="wait_message">Please wait</string>
+    <string name="phone_txt">Phone number</string>
+    <string name="phone_is_exists">This phone number already exists</string>
+    <string name="email_created">your email has been created successfully</string>
+    <string name="check_internet">Please check your internet connection and try again</string>
+    <string name="something_wrong">Unexpected error</string>
 </resources>

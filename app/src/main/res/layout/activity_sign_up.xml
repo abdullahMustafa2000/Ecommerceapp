@@ -29,7 +29,6 @@
         app:layout_constraintWidth_percent=".8"
         android:layout_marginTop="32dp">
 
-
         <EditText
             android:id="@+id/name_et"
             android:layout_width="match_parent"
@@ -41,30 +40,44 @@
             android:textAllCaps="false"
             android:textColorHint="@color/white"/>
         <EditText
-            android:id="@+id/email_et"
+            android:id="@+id/phone_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/design_input"
             android:padding="12dp"
+            android:inputType="phone"
+            android:textColor="@color/white"
+            android:hint="@string/phone_txt"
+            android:textAllCaps="false"
+            android:textColorHint="@color/white"
+            android:layout_marginTop="24dp"/>
+        <EditText
+            android:id="@+id/su_email_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/design_input"
+            android:padding="12dp"
+            android:inputType="textEmailAddress"
             android:textColor="@color/white"
             android:hint="@string/email_txt"
             android:textAllCaps="false"
             android:textColorHint="@color/white"
             android:layout_marginTop="24dp"/>
         <EditText
-            android:id="@+id/password_et"
+            android:id="@+id/su_password_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/design_input"
             android:padding="12dp"
             android:textColor="@color/white"
             android:hint="@string/password_txt"
+            android:inputType="textPassword"
             android:textAllCaps="false"
             android:textColorHint="@color/white"
             android:layout_marginTop="24dp"/>
 
         <com.rey.material.widget.CheckBox
-            android:id="@+id/sign_up_remember_me_btn"
+            android:id="@+id/su_remember_me_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Material.Drawable.CheckBox"
