@@ -12,6 +12,9 @@ public class UserModule {
         this.password = password;
     }
 
+    public UserModule() {
+    }
+
     public int getUserId() {
         return userId;
     }

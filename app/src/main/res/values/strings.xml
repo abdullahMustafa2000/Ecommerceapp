@@ -3,7 +3,7 @@
     <string name="join_now">Join Now</string>
     <string name="have_an_account">Already have an account</string>
     <string name="username_txt">Username</string>
-    <string name="email_txt">E-mail</string>
+    <string name="email_txt">Phone</string>
     <string name="password_txt">Password</string>
     <string name="remember_me_txt">Remember me</string>
     <string name="login_txt">Login</string>
@@ -17,5 +17,8 @@
     <string name="phone_is_exists">This phone number already exists</string>
     <string name="email_created">your email has been created successfully</string>
     <string name="check_internet">Please check your internet connection and try again</string>
-    <string name="something_wrong">Unexpected error</string>
+    <string name="unknown_error">Unexpected error</string>
+    <string name="login_loading">Chacking account</string>
+    <string name="user_not_found">wronge phone or password</string>
+    <string name="email_exist">This email has been created</string>
 </resources>

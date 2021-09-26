@@ -7,4 +7,10 @@ public class Statics {
     public static final String USER_NAME_REF = "username";
     public static final String PASSWORD_REF = "password";
     public static final String EMAIL_REF = "email";
+
+
+    public static final String INTENT_PHONE = "phoneIntent";
+    public static final String INTENT_USER_NAME = "usernameIntent";
+    public static final String INTENT_PASSWORD = "passwordIntent";
+    public static final String INTENT_EMAIL = "emailIntent";
 }

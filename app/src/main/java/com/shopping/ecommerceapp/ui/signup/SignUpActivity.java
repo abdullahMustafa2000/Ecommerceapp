@@ -17,9 +17,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseError;
 import com.rey.material.widget.CheckBox;
 import com.shopping.ecommerceapp.R;
+import com.shopping.ecommerceapp.ui.home.HomeActivity;
 import com.shopping.ecommerceapp.ui.login.LoginActivity;
 import com.shopping.ecommerceapp.ui.main.MainActivity;
 import com.shopping.ecommerceapp.modules.UserModule;
@@ -94,14 +96,15 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void startNewActivity(Class<?> activity) {
         startActivity(new Intent(this, activity));
+        finish();
     }
 
-    private void onResult(Pair<Task<Void>, DatabaseError> resultPair) {
+    private void onResult(Pair<Task<Void>, String> resultPair) {
         if (resultPair.first != null && resultPair.second == null) {
             // task is successful (OnComplete)
             showToast(getString(R.string.email_created));
             loadingBar.dismiss();
-            startNewActivity(LoginActivity.class);
+            startNewActivity(HomeActivity.class);
 
         } else if (resultPair.first == null && resultPair.second == null) {
             // user phone is exists (isExists)
@@ -109,10 +112,12 @@ public class SignUpActivity extends AppCompatActivity {
             loadingBar.dismiss();
         } else if (resultPair.first == null && resultPair.second != null) {
             // error in network or anything else (OnCanceled)
-            if (resultPair.second.getMessage().contains("internet")) {
+            if (resultPair.second.contains("internet")) {
                 showToast(getString(R.string.check_internet));
+            } else if (resultPair.second.contains("email")) {
+                showToast(getString(R.string.email_exist));
             } else {
-                showToast(getString(R.string.something_wrong));
+                showToast(getString(R.string.unknown_error));
             }
             startNewActivity(MainActivity.class);
             loadingBar.dismiss();
