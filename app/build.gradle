@@ -13,6 +13,7 @@ android {
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -49,4 +50,16 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.3.1"
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:2.3.1"
+
+    //room database
+    def room_version = "2.3.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    //rxjava
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.8'
+
+    //multidex
+    implementation 'com.android.support:multidex:1.0.3'
 }

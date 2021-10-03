@@ -3,7 +3,7 @@
     <string name="join_now">Join Now</string>
     <string name="have_an_account">Already have an account</string>
     <string name="username_txt">Username</string>
-    <string name="email_txt">Phone</string>
+    <string name="email_txt">E-mail</string>
     <string name="password_txt">Password</string>
     <string name="remember_me_txt">Remember me</string>
     <string name="login_txt">Login</string>

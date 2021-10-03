@@ -37,6 +37,7 @@
             android:padding="12dp"
             android:textColor="@color/white"
             android:hint="@string/email_txt"
+            android:inputType="textEmailAddress"
             android:textAllCaps="false"
             android:text="01555220343"
             android:textColorHint="@color/white"

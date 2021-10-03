@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -49,8 +50,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void userLogin() {
         String email, password;
-        email = emailEt.getText().toString();
-        password = passwordEt.getText().toString();
+        email = emailEt.getText().toString().trim();
+        password = passwordEt.getText().toString().trim();
         if (inputIsOk(email, password)) {
             checkEmail(email, password);
             showLoadingBar();
@@ -64,6 +65,13 @@ public class LoginActivity extends AppCompatActivity {
         loadingBar.setMessage(getString(R.string.wait_message));
         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
+    }
+
+    private void insertUserToDB(UserModule userModule) {
+        loginViewModel.putUserInDb(userModule);
+        SharedPreferences preferences;
+        preferences = getSharedPreferences(Statics.SHARED_PREF_NAME, MODE_PRIVATE);
+        preferences.edit().putString(Statics.UID_SHARED_PREF, userModule.getUid()).apply();
     }
 
     private void checkEmail(String email, String password) {
@@ -91,6 +99,8 @@ public class LoginActivity extends AppCompatActivity {
     private void onResult(Pair<UserModule, String> pairResult) {
         loadingBar.dismiss();
         if (pairResult.first != null && pairResult.second == null) {
+            if (rememberMeCBox.isChecked())
+                insertUserToDB(pairResult.first);
             startActivity(intentData(pairResult.first));
             finish();
         } else if (pairResult.first == null && pairResult.second == null) {

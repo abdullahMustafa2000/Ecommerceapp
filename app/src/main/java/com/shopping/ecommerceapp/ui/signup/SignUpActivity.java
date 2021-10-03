@@ -21,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseError;
 import com.rey.material.widget.CheckBox;
 import com.shopping.ecommerceapp.R;
+import com.shopping.ecommerceapp.classes.Statics;
 import com.shopping.ecommerceapp.ui.home.HomeActivity;
 import com.shopping.ecommerceapp.ui.login.LoginActivity;
 import com.shopping.ecommerceapp.ui.main.MainActivity;
@@ -29,7 +30,6 @@ import com.shopping.ecommerceapp.modules.UserModule;
 public class SignUpActivity extends AppCompatActivity {
 
     EditText usernameEt, emailEt, passwordEt, phoneEt;
-    CheckBox rememberMeCb;
     AppCompatButton signUpBtn;
     ProgressDialog loadingBar;
     SignUpViewModel signUpViewModel;
@@ -52,10 +52,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void createAccount() {
         String username, email, password, phone;
-        username = usernameEt.getText().toString();
-        email = emailEt.getText().toString();
-        password = passwordEt.getText().toString();
-        phone = phoneEt.getText().toString();
+        username = usernameEt.getText().toString().trim();
+        email = emailEt.getText().toString().trim();
+        password = passwordEt.getText().toString().trim();
+        phone = phoneEt.getText().toString().trim();
         if (inputIsOk(username, email, password)) {
             showProgressBar();
             validEmail(phone, username, email, password);
@@ -76,7 +76,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void validEmail(String phone, String username, String email, String password) {
-        UserModule userModule = new UserModule(phone, username, email, password);
+        UserModule userModule = new UserModule(phone, username, email, password, null);
         signUpViewModel.createAccount(userModule).observe(this, this::onResult);
     }
 
@@ -86,7 +86,6 @@ public class SignUpActivity extends AppCompatActivity {
         emailEt = findViewById(R.id.su_email_et);
         phoneEt = findViewById(R.id.phone_et);
         signUpBtn = findViewById(R.id.sign_up_btn);
-        rememberMeCb = findViewById(R.id.su_remember_me_btn);
         loadingBar = new ProgressDialog(this);
     }
 
@@ -95,7 +94,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void startNewActivity(Class<?> activity) {
-        startActivity(new Intent(this, activity));
+        startActivity(new Intent(this, activity).putExtra(Statics.INTENT_EMAIL, emailEt.getText().toString()));
         finish();
     }
 
@@ -106,10 +105,6 @@ public class SignUpActivity extends AppCompatActivity {
             loadingBar.dismiss();
             startNewActivity(HomeActivity.class);
 
-        } else if (resultPair.first == null && resultPair.second == null) {
-            // user phone is exists (isExists)
-            showToast(getString(R.string.phone_is_exists));
-            loadingBar.dismiss();
         } else if (resultPair.first == null && resultPair.second != null) {
             // error in network or anything else (OnCanceled)
             if (resultPair.second.contains("internet")) {

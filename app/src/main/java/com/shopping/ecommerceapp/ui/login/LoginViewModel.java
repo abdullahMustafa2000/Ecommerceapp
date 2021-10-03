@@ -1,8 +1,10 @@
 package com.shopping.ecommerceapp.ui.login;
 
+import android.app.Application;
 import android.util.Pair;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -12,9 +14,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shopping.ecommerceapp.classes.Statics;
+import com.shopping.ecommerceapp.db.RoomDatabaseManager;
+import com.shopping.ecommerceapp.db.UserDao;
 import com.shopping.ecommerceapp.modules.UserModule;
 
-public class LoginViewModel extends ViewModel {
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.SingleEmitter;
+import io.reactivex.rxjava3.core.SingleOnSubscribe;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
+public class LoginViewModel extends AndroidViewModel {
+
+    UserDao dao;
+    public LoginViewModel(@NonNull Application application) {
+        super(application);
+        dao = RoomDatabaseManager.getInstance(application).getUserDao();
+    }
 
     public MutableLiveData<Pair<UserModule, String>> userLogin(String email, String password) {
         MutableLiveData<Pair<UserModule, String>> data = new MutableLiveData<>();
@@ -51,4 +67,12 @@ public class LoginViewModel extends ViewModel {
             }
         });
     }
+
+    public void putUserInDb(UserModule userModule) {
+        Single.create((SingleOnSubscribe<UserModule>) emitter -> emitter.onSuccess(userModule))
+                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
+                .subscribe(o -> dao.insert(o));
+    }
+
 }
